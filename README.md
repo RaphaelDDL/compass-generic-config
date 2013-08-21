@@ -63,3 +63,10 @@ Run `compass watch` or any other tool that do the same (Prepros with Full Compas
 Profit.
 
 
+### Etc
+Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request.
+
+Thanks to 
+* People who made Sass and Compass ([nex3](http://nex-3.com/) and [Chris](http://chriseppstein.github.com/) <3)
+* [Peter J Langley](http://www.codechewing.com/library/automatically-generate-css-sprites-with-sass/) for his sprite hash remover script used as base (as well as the tutorial itself. Yes, go read the link :D)
+* You who reads
