@@ -4,7 +4,7 @@ compass-generic-config
 Easy editable config.rb file for Compass
 (requires latest `sass bleeding edge` and latest `compass-sourcemaps`)
 
-###Folder Structure used as Base
+##Folder Structure used as Base
 
 	root (where config.rb has to be put)
 	|-- user_css_folder
@@ -15,33 +15,33 @@ Easy editable config.rb file for Compass
 	|-- user_image_folder
 	+-- user_javascript_folder
 
-###Development Environment Specifics
+##Development Environment Specifics
 
 * Expanded Output, with line comments;
 * Create sourcemaps for all `.css` files as `.css.map`, used on Chrome DevTools for better CSS debug;
 
-###Production Environment Specifics
+##Production Environment Specifics
 
 * Compressed Output, no line comments;
 * Disable sourcemaps and remove all already created sourcemaps so they are not uploaded by mistake;
 
-###Both Environments
+##Both Environments
 
-######Compass sprite generation
+####Compass sprite generation
 Compass creates a new sprite file everytime there's a change, by appending a hash to the filename. For TFS and other source controls, this is a pain (having to include/delete images all time from project), therefore:
 
 * sprites without hash on name  - name always the same (`icon-sprites.png` for e.g.);
 * Hash used as cachebuster instead (`icon-sprites.png?v=9999999` for e.g.)
 
 
-### Configuration
+##Configuration
   
 
-###### Step 0
+#### Step 0
 Put `config.rb` on your project's root folder.
 
 
-###### Step 1
+#### Step 1
 Configure your folder's names. E.g.:
 
   user_css_folder = 'css'
@@ -51,22 +51,22 @@ Configure your folder's names. E.g.:
   user_image_folder = 'img'
   user_javascript_folder = 'js'
   
-###### Step 2
+#### Step 2
 Configure your environment's type. E.g.:
 
   environment = :development
   
-###### Step 3
-Run `compass watch` or any other tool that do the same (Prepros with Full Compass Support on, for e.g.)
+#### Step 3
+Run `compass watch` or any other tool that do the same ([Prepros](http://alphapixels.com/prepros/) with Full Compass Support on, for e.g.)
 
-###### Step 4
+#### Step 4
 Profit.
 
 
-### Etc
+##Etc
 Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request.
 
-Thanks to 
+Thanks to:
 * People who made Sass and Compass ([nex3](http://nex-3.com/) and [Chris](http://chriseppstein.github.com/) <3)
 * [Peter J Langley](http://www.codechewing.com/library/automatically-generate-css-sprites-with-sass/) for his sprite hash remover script used as base (as well as the tutorial itself. Yes, go read the link :D)
-* You who reads
+* You who reads, use and/or help make it better
