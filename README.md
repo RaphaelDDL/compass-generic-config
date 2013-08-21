@@ -17,12 +17,14 @@ Easy editable config.rb file for Compass
 
 ##Development Environment Specifics
 
-* Expanded Output, with line comments;
+* Expanded Output;
+* Line comments;
 * Create sourcemaps for all `.css` files as `.css.map`, used on Chrome DevTools for better CSS debug;
 
 ##Production Environment Specifics
 
-* Compressed Output, no line comments;
+* Compressed Output;
+* No line comments;
 * Disable sourcemaps and remove all already created sourcemaps so they are not uploaded by mistake;
 
 ##Both Environments
@@ -54,13 +56,13 @@ Configure your folder's names. E.g.:
 #### Step 2
 Configure your environment's type. E.g.:
 
-  environment = :development
+	environment = :development
   
 #### Step 3
 Run `compass watch` or any other tool that do the same ([Prepros](http://alphapixels.com/prepros/) with Full Compass Support on, for e.g.)
 
 #### Step 4
-Profit.
+Profit (?!)
 
 
 ##Etc
@@ -69,4 +71,4 @@ Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request.
 Thanks to:
 * People who made Sass and Compass ([nex3](http://nex-3.com/) and [Chris](http://chriseppstein.github.com/) <3)
 * [Peter J Langley](http://www.codechewing.com/library/automatically-generate-css-sprites-with-sass/) for his sprite hash remover script used as base (as well as the tutorial itself. Yes, go read the link :D)
-* You who reads, use and/or help make it better
+* You who read, use and/or help make it better
