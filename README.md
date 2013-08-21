@@ -4,7 +4,7 @@ compass-generic-config
 Easy editable config.rb file for Compass
 (requires latest `sass bleeding edge` and latest `compass-sourcemaps`)
 
-####Folder Structure used as Base
+###Folder Structure used as Base
 
 	root (where config.rb has to be put)
 	|-- user_css_folder
@@ -15,17 +15,17 @@ Easy editable config.rb file for Compass
 	|-- user_image_folder
 	+-- user_javascript_folder
 
-####Development Environment Specifics
+###Development Environment Specifics
 
 * Expanded Output, with line comments;
 * Create sourcemaps for all `.css` files as `.css.map`, used on Chrome DevTools for better CSS debug;
 
-####Production Environment Specifics
+###Production Environment Specifics
 
 * Compressed Output, no line comments;
 * Disable sourcemaps and remove all already created sourcemaps so they are not uploaded by mistake;
 
-##Both Environments
+###Both Environments
 
 ######Compass sprite generation
 Compass creates a new sprite file everytime there's a change, by appending a hash to the filename. For TFS and other source controls, this is a pain (having to include/delete images all time from project), therefore:
@@ -34,7 +34,7 @@ Compass creates a new sprite file everytime there's a change, by appending a has
 * Hash used as cachebuster instead (`icon-sprites.png?v=9999999` for e.g.)
 
 
-#### Configuration
+### Configuration
   
 
 ###### Step 0
