@@ -1,4 +1,4 @@
-compass-generic-config
+[compass-generic-config](http://raphaelddl.github.io/compass-generic-config)
 ======================
 
 Easy editable config.rb file for Compass
