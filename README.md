@@ -44,12 +44,12 @@ Put `config.rb` on your project's root folder.
 #### Step 1
 Configure your folder's names. E.g.:
 
-  user_css_folder = 'css'
-  user_fonts_folder = 'fonts'
-  user_sass_folder = 'sass'
-  user_sasscache_folder = '_cache'
-  user_image_folder = 'img'
-  user_javascript_folder = 'js'
+	user_css_folder = 'css'
+	user_fonts_folder = 'fonts'
+	user_sass_folder = 'sass'
+	user_sasscache_folder = '_cache'
+	user_image_folder = 'img'
+	user_javascript_folder = 'js'
   
 #### Step 2
 Configure your environment's type. E.g.:
