@@ -57,7 +57,7 @@ Configure your folder's names. E.g.:
 #### Step 2
 Configure your environment's type. E.g.:
 
-	environment = :development
+	user_environment = 'dev' ##or 'prod'. Defaults to prod if wrote wrong
   
   
 #### Step 3
