@@ -30,9 +30,11 @@ user_javascript_folder = 'js'
 ##================================##
 # STEP 2                           #
 ##================================##
-# :DEVELOPMENT OR :PRODUCTION      #
+# 'dev' for DEVELOPMENT            #
+# OR                               #
+# 'prod' for PRODUCTION            #
 ##================================##
-environment = :development
+user_environment = 'dev'
 
 
 ########################################################################
@@ -70,23 +72,23 @@ fonts_dir = css_dir + '/' + user_fonts_folder
 cache_dir = sass_dir + '/' + user_sasscache_folder
 
 # Environment Rules
-if environment == :development
+if user_environment == 'dev'
 	p '##================================##'
 	p 'Development Environment'
 	p '##================================##'
 	p ' '
-
+	environment == :development
 	output_style = :expanded
 	line_comments = true
 	sass_options = {:sourcemap => true, :cache_location => cache_dir }
 	enable_sourcemaps = true 
 
-elsif environment == :production
+else
 	p '##================================##'
 	p 'Production Environment'
 	p '##================================##'
 	p ' '
-
+	environment == :production
 	output_style = :compressed
 	line_comments = false
 	sass_options = { :cache_location => cache_dir }
