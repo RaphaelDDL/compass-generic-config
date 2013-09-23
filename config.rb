@@ -1,3 +1,4 @@
+# https://github.com/RaphaelDDL/compass-generic-config
 ####################################
 # COMPASS CONFIG                   #
 #           ---------              #
