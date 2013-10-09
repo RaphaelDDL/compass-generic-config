@@ -1,4 +1,8 @@
+####################################
+# GitHub Repo                      #
 # https://github.com/RaphaelDDL/compass-generic-config
+# MIT LICENSE                      #
+# https://github.com/RaphaelDDL/compass-generic-config/blob/master/LICENSE
 ####################################
 # COMPASS CONFIG                   #
 #           ---------              #
