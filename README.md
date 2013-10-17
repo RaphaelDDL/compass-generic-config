@@ -7,9 +7,9 @@ Easy editable config.rb file for Compass
 
 	root (where config.rb has to be put)
 	|-- user_css_folder
-	|    |-- user_fonts_folder 
-	|    +-- user_sass_folder 
-	|         +-- user_sasscache_folder 
+	|    |-- user_fonts_folder
+	|    +-- user_sass_folder
+	|         +-- user_sasscache_folder
 	|-- user_css_folder
 	|-- user_image_folder
 	+-- user_javascript_folder
@@ -37,7 +37,7 @@ Compass creates a new sprite file everytime there's a change, by appending a has
 
 
 ##Configuration
-  
+
 
 #### Step 0
 Put `config.rb` on your project's root folder.
@@ -52,14 +52,16 @@ Configure your folder's names. E.g.:
 	user_sasscache_folder = '_cache' //sass default is '.sass-cache'
 	user_image_folder = 'img'
 	user_javascript_folder = 'js'
-  
-  
+
+
 #### Step 2
 Configure your environment's type. E.g.:
 
 	user_environment = 'dev' ##or 'prod'. Defaults to prod if wrote wrong
-  
-  
+
+ 	user_sourcemaps = false ##or true. Defaults to false
+ 	##if using sprite gen, source will fail (as will cacheburst)
+
 #### Step 3
 Run `compass watch` from your Ruby prompt *or any other tool that do the same ([Prepros](http://alphapixels.com/prepros/) with Full Compass Support on, for e.g.)*
 
@@ -69,7 +71,7 @@ Profit (?!)
 
 
 ##Knows Issues
-Compass Sprites using something like `@import "{folderName}/*.png"; @include all-{folderName}-sprites;` give `#public_url` error and sourcemaps will fail to be created/updated.
+Compass Sprites using something like `@import "{folderName}/*.png"; @include all-{folderName}-sprites;` give `#public_url` error and sourcemaps will fail to be created/updated. Use `user_sourcemaps = false` to prevent that.
 
 
 ##Etc

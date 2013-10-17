@@ -96,7 +96,7 @@ if user_environment == 'dev'
 	end
 
 
-elsif user_environment == 'prod'
+else # user_environment != 'dev'
 	p '##================================##'
 	p 'Production Environment'
 	p '##================================##'
