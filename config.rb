@@ -25,9 +25,9 @@ user_javascript_folder = 'js'
 #
 # root
 # |-- user_css_folder
-# |    |-- user_fonts_folder 
-# |    +-- user_sass_folder 
-# |         +-- user_sasscache_folder 
+# |    |-- user_fonts_folder
+# |    +-- user_sass_folder
+# |         +-- user_sasscache_folder
 # |-- user_css_folder
 # |-- user_image_folder
 # +-- user_javascript_folder
@@ -41,6 +41,8 @@ user_javascript_folder = 'js'
 ##================================##
 user_environment = 'dev'
 
+##if using sprite gen, source will fail (as will cacheburst)
+user_sourcemaps = false
 
 ########################################################################
 ########################################################################
@@ -82,23 +84,29 @@ if user_environment == 'dev'
 	p 'Development Environment'
 	p '##================================##'
 	p ' '
-	environment == :development
+	environment = :development
 	output_style = :expanded
 	line_comments = true
-	sass_options = {:sourcemap => true, :cache_location => cache_dir }
-	enable_sourcemaps = true 
+	if user_sourcemaps == true
+		sass_options = {:sourcemap => true, :cache_location => cache_dir }
+		enable_sourcemaps = true
+	else
+		sass_options = { :cache_location => cache_dir }
+		enable_sourcemaps = false
+	end
 
-else
+
+elsif user_environment == 'prod'
 	p '##================================##'
 	p 'Production Environment'
 	p '##================================##'
 	p ' '
-	environment == :production
+	environment = :production
 	output_style = :compressed
 	line_comments = false
 	sass_options = { :cache_location => cache_dir }
 	enable_sourcemaps = false
-	
+
 	on_stylesheet_saved do |filename|
 		if File.exists?(filename)
 			#Removing development sourcemap file
@@ -106,6 +114,7 @@ else
 		end
 	end
 end
+
 
 # COMPASS SPRITE CONFIG
 # Make a copy of sprites with a name that has no uniqueness of the hash.
