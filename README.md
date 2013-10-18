@@ -3,6 +3,21 @@
 
 Easy editable config.rb file for Compass
 
+
+
+
+#### Changelog
+* 0.3 - Added `user_sourcemaps`
+* 0.2 - Added `user_environment` instead of direct changes on `environment` setting.
+* 0.1 - Initial
+
+
+
+
+------
+
+
+
 ##Folder Structure used as Base
 
 	root (where config.rb has to be put)
@@ -35,6 +50,7 @@ Compass creates a new sprite file everytime there's a change, by appending a has
 * sprites without hash on name  - name always the same (`icon-sprites.png` for e.g.);
 * Hash used as cachebuster instead (`icon-sprites.png?v=9999999` for e.g.)
 
+------
 
 ##Configuration
 
@@ -73,6 +89,7 @@ Profit (?!)
 ##Knows Issues
 Compass Sprites using something like `@import "{folderName}/*.png"; @include all-{folderName}-sprites;` give `#public_url` error and sourcemaps will fail to be created/updated. Use `user_sourcemaps = false` to prevent that.
 
+------
 
 ##Etc
 Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request.
