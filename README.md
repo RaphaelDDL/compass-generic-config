@@ -7,12 +7,17 @@ Easy editable config.rb file for Compass
 
 
 #### Changelog
+* 0.4 - Revamped config, now integrated with Grunt.js
 * 0.3 - Added `user_sourcemaps`
 * 0.2 - Added `user_environment` instead of direct changes on `environment` setting.
 * 0.1 - Initial
 
 
 
+##TODO
+Re-write readme to match 0.4 changes.
+
+If you don't use Grunt.js, just get package.json and config.rb, and edit `folderConfig` accordingly. The only thing you will need to add on config.rb is the enviroment var (which if used in conjunction with Grunt, it's added with my example tasks), for e.g. `environment = :development` or `environment = :production` at the first line.
 
 ------
 

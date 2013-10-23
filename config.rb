@@ -1,107 +1,92 @@
-####################################
-# GitHub Repo                      #
-# https://github.com/RaphaelDDL/compass-generic-config
-# MIT LICENSE                      #
-# https://github.com/RaphaelDDL/compass-generic-config/blob/master/LICENSE
-####################################
-# COMPASS CONFIG                   #
-#           ---------              #
-# PUT config.rb ON PROJECT ROOT    #
-####################################
+#================================================#
+#compass-generic-config
+#Version: 0.4
+#Author: RaphaelDDL
+#Github: https://github.com/RaphaelDDL/compass-generic-config
+#MIT LICENSE
+#https://github.com/RaphaelDDL/compass-generic-config/blob/master/LICENSE
+#================================================#
 
-##================================##
-# STEP 1                           #
-##================================##
-# CONFIGURE YOUR FOLDER NAMES      #
-##================================##
-user_css_folder = 'css'
-user_fonts_folder = 'fonts'
-user_sass_folder = 'sass'
-user_sasscache_folder = '_cache'
-user_image_folder = 'img'
-user_javascript_folder = 'js'
+#================================================#
+#Section: Open and Read 'package.json'           #
+#================================================#
+begin
+	require 'open-uri'
+	require 'json'
 
-# FOLDER STRUCTURE EXAMPLE
-#
-# root
-# |-- user_css_folder
-# |    |-- user_fonts_folder
-# |    +-- user_sass_folder
-# |         +-- user_sasscache_folder
-# |-- user_css_folder
-# |-- user_image_folder
-# +-- user_javascript_folder
+	packOpen = open('package.json', "UserAgent" => "Ruby-Wget").read
+	packJson = JSON.parse(packOpen) # convert JSON data into a hash
+	folderConfig = packJson['folderConfig']
+rescue
+	abort("Error trying to read 'package.json'. Make sure you have one and have your 'folderConfig' configured. Also check if your Ruby have 'open-uri' and 'json' and can use them.")
+end
 
-##================================##
-# STEP 2                           #
-##================================##
-# 'dev' for DEVELOPMENT            #
-# OR                               #
-# 'prod' for PRODUCTION            #
-##================================##
-user_environment = 'dev'
-
-##if using sprite gen, source will fail (as will cacheburst)
-user_sourcemaps = false
-
-########################################################################
-########################################################################
-########################################################################
-########################################################################
-########################################################################
-# DO NOT MODIFY BELOW ~~ DO NOT MODIFY BELOW ~~ DO NOT MODIFY BELOW    #
-########################################################################
-########################################################################
-########################################################################
-########################################################################
-########################################################################
-# General
+#================================================#
+#Section: Default Properties                     #
+#================================================#
+project_type = :stand_alone
 relative_assets = true
-project_path = File.dirname(__FILE__) + '/'
+disable_warnings = false
+preferred_syntax = :scss
+sprite_engine = :chunky_png
+chunky_png_options = {:compression => Zlib::BEST_COMPRESSION}
+
+#================================================#
+#Section: Http Paths                             #
+#================================================#
+http_path = folderConfig['user_http_path']
+http_javascripts_path = http_path + '/' + folderConfig['user_javascript_folder']
+http_stylesheets_path = http_path + '/' + folderConfig['user_css_folder']
+http_fonts_path = http_stylesheets_path + '/' + folderConfig['user_fonts_folder']
+http_images_path = http_path + '/' + folderConfig['user_image_folder']
+http_generated_images_path = http_images_path
 
 
-# Sass Paths
-http_path = '/'
-http_javascripts_path = user_javascript_folder
-http_stylesheets_path = user_css_folder
-http_generated_images_path = user_image_folder
-http_images_path = user_image_folder
-http_fonts_path = http_stylesheets_path + '/' + user_fonts_folder
-cache_path = project_path + user_css_folder + '/' + user_sass_folder + '/' + user_sasscache_folder
+#================================================#
+#Section: Compass Directories                    #
+#================================================#
+javascripts_dir = folderConfig['user_javascript_folder']
+css_dir = folderConfig['user_css_folder']
+sass_dir = css_dir + '/' + folderConfig['user_sass_folder']
+images_dir = folderConfig['user_image_folder']
+generated_images_dir = folderConfig['user_image_folder']
+fonts_dir = css_dir + '/' + folderConfig['user_fonts_folder']
+cache_dir = sass_dir + '/' + folderConfig['user_sasscache_folder']
 
-# Sass Directories
-javascripts_dir = user_javascript_folder
-css_dir = user_css_folder
-sass_dir = css_dir + '/' + user_sass_folder
-images_dir = user_image_folder
-generated_images_dir = user_image_folder
-fonts_dir = css_dir + '/' + user_fonts_folder
-cache_dir = sass_dir + '/' + user_sasscache_folder
+#================================================#
+#Section: Compass Paths                          #
+#================================================#
+project_path = File.realpath(File.join(File.dirname(__FILE__)))
 
-# Environment Rules
-if user_environment == 'dev'
-	p '##================================##'
-	p 'Development Environment'
-	p '##================================##'
-	p ' '
-	environment = :development
+javascripts_path = project_path + '/' + javascripts_dir
+css_path = project_path + '/' + css_dir
+sass_path = project_path + '/' + sass_dir
+images_path = project_path + '/' + images_dir
+cache_path = project_path + '/' + cache_dir
+generated_images_path = images_path
+fonts_path = project_path + '/' + fonts_dir
+sprite_load_path = images_path
+
+#================================================#
+#Section: Environment Rules                      #
+#================================================#
+# if (defined?(environment)) && environment != nil
+# 	environment = :production
+# 	puts "WARNING: environment property not set, using :production as default.\n"
+# end
+
+if environment == :development
 	output_style = :expanded
 	line_comments = true
-	if user_sourcemaps == true
-		sass_options = {:sourcemap => true, :cache_location => cache_dir }
+	if folderConfig['user_sourcemaps'] == "true" || folderConfig['user_sourcemaps'] == true
 		enable_sourcemaps = true
+		sass_options = {:sourcemap => true, :cache_location => cache_dir }
 	else
-		sass_options = { :cache_location => cache_dir }
 		enable_sourcemaps = false
+		sass_options = { :cache_location => cache_dir }
 	end
 
-
-else # user_environment != 'dev'
-	p '##================================##'
-	p 'Production Environment'
-	p '##================================##'
-	p ' '
-	environment = :production
+elsif environment == :production
 	output_style = :compressed
 	line_comments = false
 	sass_options = { :cache_location => cache_dir }
@@ -109,24 +94,29 @@ else # user_environment != 'dev'
 
 	on_stylesheet_saved do |filename|
 		if File.exists?(filename)
-			#Removing development sourcemap file
-			FileUtils.rm_rf(filename + '.map')
+			FileUtils.rm_rf(filename + '.map') #Removing development sourcemap file
 		end
 	end
 end
 
+#================================================#
+#Section: Compass Spriting Rules                 #
+#================================================#
+on_sprite_generated do |sprite_data|
+	sprite_data.metadata['Caption'] = "©" + packJson['author']
+end
 
-# COMPASS SPRITE CONFIG
-# Make a copy of sprites with a name that has no uniqueness of the hash.
 on_sprite_saved do |filename|
+	# Make a copy of sprites with a name that has no uniqueness of the hash
 	if File.exists?(filename)
 		FileUtils.cp filename, filename.gsub(%r{-s[a-z0-9]{10}\.png$}, '.png')
 		FileUtils.rm_rf(filename)
 	end
 end
-# Replace in stylesheets generated references to sprites
-# by their counterparts without the hash uniqueness.
+
 on_stylesheet_saved do |filename|
+	# Replace in stylesheets generated references to sprites
+	# by their counterparts without the hash uniqueness.
 	if File.exists?(filename)
 		css = File.read filename
 		File.open(filename, 'w+') do |f|
