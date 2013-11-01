@@ -64,5 +64,5 @@ module.exports = function(grunt) {
 	grunt.registerTask("prod", ["watch:compassprod"]);
 
 	// the default task can be run just by typing "grunt" on the command line
-	grunt.registerTask('default', ['uglify:prod','compass:prod','imagemin:all']);
+	grunt.registerTask('default', 'compass:prod']);
 }//module.exports
