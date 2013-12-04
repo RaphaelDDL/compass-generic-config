@@ -1,16 +1,17 @@
 {
 	"name": "compass-generic-config",
-	"version": "1.0.0",
-	"description": "A configurable config.rb, now integrated with Grunt.js",
+	"version": "0.5.1",
+	"description": "A configurable config.rb, integrated with Gruntjs",
 	"main": "Gruntfile.js",
 	"author": "RaphaelDDL",
 	"url": "https://github.com/RaphaelDDL/compass-generic-config",
 	"folderConfig": {
 		"user_http_path": "/",
+		"user_assets_folder": "assets",
 		"user_css_folder": "css",
 		"user_fonts_folder": "fonts",
 		"user_sass_folder": "sass",
-		"user_sasscache_folder": "_cache",
+		"user_sasscache_folder": ".cache",
 		"user_image_folder": "img",
 		"user_javascript_folder": "js",
 		"user_sourcemaps":"true"

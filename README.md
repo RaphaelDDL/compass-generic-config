@@ -1,38 +1,45 @@
 [compass-generic-config](http://raphaelddl.github.io/compass-generic-config)
 ======================
 
-Easy editable config.rb file for Compass
+Easy editable config.rb file for Compass, now optionally integrated with Gruntjs and entirely configurable via package.json + grunt tasks.
 
+**Important**
+Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request, it's a pleasure to receive them.
 
-
+------
 
 #### Changelog
+* 0.5.1 - Implemented user_assets_folder, changed user_fonts_folder to assets' root, like most applications normally do, revamped Readme to reflect the changes
 * 0.4 - Revamped config, now integrated with Grunt.js
 * 0.3 - Added `user_sourcemaps`
 * 0.2 - Added `user_environment` instead of direct changes on `environment` setting.
 * 0.1 - Initial
 
+------
 
+## Gruntjs Integration
 
-##TODO
-Re-write readme to match 0.4 changes.
+If you already use Grunt for your project, having sass/compass is really simple. Add `folderConfig` and the `user_xxxx_folder` like on my `package.json` file. That will guide not only config.rb itself but also `Gruntfile.js` if you are using my example settings for `grunt-contrib-compass`.
 
-If you don't use Grunt.js, just get package.json and config.rb, and edit `folderConfig` accordingly. The only thing you will need to add on config.rb is the enviroment var (which if used in conjunction with Grunt, it's added with my example tasks), for e.g. `environment = :development` or `environment = :production` at the first line.
+If you don't use Grunt.js, just get `package.json` and `config.rb`, editting `folderConfig` accordingly. The only thing you will need is to uncomment the `enviroment` var on `config.rb` - which if used in conjunction with Grunt, it's configured `on Gruntfile.js`, like my example task). The values for that var can be `:development` or `:production`.
 
 ------
 
-
-
 ##Folder Structure used as Base
 
-	root (where config.rb has to be put)
-	|-- user_css_folder
-	|    |-- user_fonts_folder
-	|    +-- user_sass_folder
-	|         +-- user_sasscache_folder
-	|-- user_css_folder
-	|-- user_image_folder
-	+-- user_javascript_folder
+	root (where package.json/config.rb/Gruntfile.js has to be put)
+	+--user_assets_folder
+		|-- user_fonts_folder
+		|-- user_image_folder
+		|-- user_javascript_folder
+		+-- user_css_folder
+			+-- user_sass_folder
+				+-- user_sasscache_folder
+
+
+For more info, please refeer to the `sampleRoot` folder.
+
+------
 
 ##Development Environment Specifics
 
@@ -61,12 +68,13 @@ Compass creates a new sprite file everytime there's a change, by appending a has
 
 
 #### Step 0
-Put `config.rb` on your project's root folder.
+Put `config.rb`, `Gruntfile.js` and `package.json` on your project's root folder.
 
 
 #### Step 1
 Configure your folder's names. E.g.:
 
+	user_assets_folder = 'assets'
 	user_css_folder = 'css'
 	user_fonts_folder = 'fonts'
 	user_sass_folder = 'sass'
@@ -76,31 +84,29 @@ Configure your folder's names. E.g.:
 
 
 #### Step 2
-Configure your environment's type. E.g.:
+Run your grunt's environment type, considering you are using my tasks. E.g.:
 
-	user_environment = 'dev' ##or 'prod'. Defaults to prod if wrote wrong
+For a watch (just like `compass watch`):
 
- 	user_sourcemaps = false ##or true. Defaults to false
- 	##if using sprite gen, source will fail (as will cacheburst)
+	grunt dev
+
+For run-once compile:
+
+	grunt compass:prod
+
 
 #### Step 3
-Run `compass watch` from your Ruby prompt *or any other tool that do the same ([Prepros](http://alphapixels.com/prepros/) with Full Compass Support on, for e.g.)*
 
-
-#### Step 4
 Profit (?!)
 
 
 ##Knows Issues
-Compass Sprites using something like `@import "{folderName}/*.png"; @include all-{folderName}-sprites;` give `#public_url` error and sourcemaps will fail to be created/updated. Use `user_sourcemaps = false` to prevent that.
+Compass Sprites using something like `@import "{folderName}/*.png"; @include all-{folderName}-sprites;` give `#public_url` error and sourcemaps will fail to be created/updated. Set `user_sourcemaps` to `false` on `package.json` to prevent that.
 
 ------
 
-##Etc
-Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request.
-
-
-Thanks to:
-* People who made Sass and Compass ([nex3](http://nex-3.com/) and [Chris](http://chriseppstein.github.com/) <3)
-* [Peter J Langley](http://www.codechewing.com/library/automatically-generate-css-sprites-with-sass/) for his sprite hash remover script used as base (as well as the tutorial itself. Go read the link, it's good :D)
-* You who read, use and/or help make it better
+####Thanks to:
+* You who read, use and/or help make it better by pushing things or creating issues
+* People who made Sass and Compass - [nex3](http://nex-3.com/) and [Chris](http://chriseppstein.github.com/) - and who contributed to it
+* People who made [Gruntjs](http://gruntjs.com) and who contributed to it
+* [Peter J Langley](http://www.codechewing.com/library/automatically-generate-css-sprites-with-sass/) for his sprite hash remover script used as base (as well as the tutorial itself. Go read it, it's good :D)

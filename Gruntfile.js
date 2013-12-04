@@ -6,6 +6,10 @@
 //MIT LICENSE
 //https://github.com/RaphaelDDL/compass-generic-config/blob/master/LICENSE
 //======================== */
+
+//* =============================================
+//Section: Grunt Configuration
+//================================================ */
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -36,13 +40,13 @@ module.exports = function(grunt) {
 		watch: {
 			compassdev: {
 					files: [
-						'<%= pkg.folderConfig.user_css_folder %>/<%= pkg.folderConfig.user_sass_folder %>/**/*.scss'
+						'<%= pkg.folderConfig.user_assets_folder %>/<%= pkg.folderConfig.user_css_folder %>/<%= pkg.folderConfig.user_sass_folder %>/**/*.scss'
 					],
 					tasks: ['compass:dev']
 			},
 			compassprod: {
 				files: [
-					'<%= pkg.folderConfig.user_css_folder %>/<%= pkg.folderConfig.user_sass_folder %>/**/*.scss'
+					'<%= pkg.folderConfig.user_assets_folder %>/<%= pkg.folderConfig.user_css_folder %>/<%= pkg.folderConfig.user_sass_folder %>/**/*.scss'
 				],
 				tasks: ['compass:prod']
 			}

@@ -7,6 +7,9 @@
 #https://github.com/RaphaelDDL/compass-generic-config/blob/master/LICENSE
 #================================================#
 
+#uncomment below if you are not using gruntjs
+#environment = :development
+
 #================================================#
 #Section: Open and Read 'package.json'           #
 #================================================#
@@ -35,22 +38,21 @@ chunky_png_options = {:compression => Zlib::BEST_COMPRESSION}
 #Section: Http Paths                             #
 #================================================#
 http_path = folderConfig['user_http_path']
-http_javascripts_path = http_path + '/' + folderConfig['user_javascript_folder']
-http_stylesheets_path = http_path + '/' + folderConfig['user_css_folder']
-http_fonts_path = http_stylesheets_path + '/' + folderConfig['user_fonts_folder']
-http_images_path = http_path + '/' + folderConfig['user_image_folder']
+http_javascripts_path = http_path + '/' + folderConfig['user_assets_folder'] + '/' + folderConfig['user_javascript_folder']
+http_stylesheets_path = http_path + '/' + folderConfig['user_assets_folder'] + '/' + folderConfig['user_css_folder']
+http_fonts_path = http_path + '/' + folderConfig['user_assets_folder'] + '/' + folderConfig['user_fonts_folder']
+http_images_path = http_path + '/' + folderConfig['user_assets_folder'] + '/' + folderConfig['user_image_folder']
 http_generated_images_path = http_images_path
-
 
 #================================================#
 #Section: Compass Directories                    #
 #================================================#
-javascripts_dir = folderConfig['user_javascript_folder']
-css_dir = folderConfig['user_css_folder']
+javascripts_dir = folderConfig['user_assets_folder'] + '/' + folderConfig['user_javascript_folder']
+css_dir = folderConfig['user_assets_folder'] + '/' + folderConfig['user_css_folder']
+images_dir = folderConfig['user_assets_folder'] + '/' + folderConfig['user_image_folder']
+generated_images_dir = folderConfig['user_assets_folder'] + '/' + folderConfig['user_image_folder']
+fonts_dir = folderConfig['user_assets_folder'] + '/' + folderConfig['user_fonts_folder']
 sass_dir = css_dir + '/' + folderConfig['user_sass_folder']
-images_dir = folderConfig['user_image_folder']
-generated_images_dir = folderConfig['user_image_folder']
-fonts_dir = css_dir + '/' + folderConfig['user_fonts_folder']
 cache_dir = sass_dir + '/' + folderConfig['user_sasscache_folder']
 
 #================================================#
@@ -59,21 +61,21 @@ cache_dir = sass_dir + '/' + folderConfig['user_sasscache_folder']
 project_path = File.realpath(File.join(File.dirname(__FILE__)))
 
 javascripts_path = project_path + '/' + javascripts_dir
+fonts_path = project_path + '/' + fonts_dir
 css_path = project_path + '/' + css_dir
 sass_path = project_path + '/' + sass_dir
-images_path = project_path + '/' + images_dir
 cache_path = project_path + '/' + cache_dir
+images_path = project_path + '/' + images_dir
 generated_images_path = images_path
-fonts_path = project_path + '/' + fonts_dir
 sprite_load_path = images_path
 
 #================================================#
 #Section: Environment Rules                      #
 #================================================#
-# if (defined?(environment)) && environment != nil
-# 	environment = :production
-# 	puts "WARNING: environment property not set, using :production as default.\n"
-# end
+if (defined?(environment)) && environment != nil
+	environment = :production
+	puts "WARNING: environment property not set, using :production as default.\n"
+end
 
 if environment == :development
 	output_style = :expanded
@@ -86,7 +88,7 @@ if environment == :development
 		sass_options = { :cache_location => cache_dir }
 	end
 
-elsif environment == :production
+else
 	output_style = :compressed
 	line_comments = false
 	sass_options = { :cache_location => cache_dir }
