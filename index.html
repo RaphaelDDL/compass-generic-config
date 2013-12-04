@@ -35,22 +35,44 @@
 <a name="compass-generic-config" class="anchor" href="#compass-generic-config"><span class="octicon octicon-link"></span></a><a href="http://raphaelddl.github.io/compass-generic-config">compass-generic-config</a>
 </h1>
 
-<p>Easy editable config.rb file for Compass</p>
+<p>Easy editable config.rb file for Compass, now optionally integrated with Gruntjs and entirely configurable via package.json + grunt tasks.</p>
 
-<h2>
+<p><strong>Important</strong>
+Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request, it's a pleasure to receive them.</p>
+
+<hr><h4>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h4>
+
+<ul>
+<li>0.5.1 - Implemented user_assets_folder, changed user_fonts_folder to assets' root, like most applications normally do, revamped Readme to reflect the changes</li>
+<li>0.4 - Revamped config, now integrated with Grunt.js</li>
+<li>0.3 - Added <code>user_sourcemaps</code>
+</li>
+<li>0.2 - Added <code>user_environment</code> instead of direct changes on <code>environment</code> setting.</li>
+<li>0.1 - Initial</li>
+</ul><hr><h2>
+<a name="gruntjs-integration" class="anchor" href="#gruntjs-integration"><span class="octicon octicon-link"></span></a>Gruntjs Integration</h2>
+
+<p>If you already use Grunt for your project, having sass/compass is really simple. Add <code>folderConfig</code> and the <code>user_xxxx_folder</code> like on my <code>package.json</code> file. That will guide not only config.rb itself but also <code>Gruntfile.js</code> if you are using my example settings for <code>grunt-contrib-compass</code>.</p>
+
+<p>If you don't use Grunt.js, just get <code>package.json</code> and <code>config.rb</code>, editting <code>folderConfig</code> accordingly. The only thing you will need is to uncomment the <code>enviroment</code> var on <code>config.rb</code> - which if used in conjunction with Grunt, it's configured <code>on Gruntfile.js</code>, like my example task). The values for that var can be <code>:development</code> or <code>:production</code>.</p>
+
+<hr><h2>
 <a name="folder-structure-used-as-base" class="anchor" href="#folder-structure-used-as-base"><span class="octicon octicon-link"></span></a>Folder Structure used as Base</h2>
 
-<pre><code>root (where config.rb has to be put)
-|-- user_css_folder
-|    |-- user_fonts_folder 
-|    +-- user_sass_folder 
-|         +-- user_sasscache_folder 
-|-- user_css_folder
-|-- user_image_folder
-+-- user_javascript_folder
+<pre><code>root (where package.json/config.rb/Gruntfile.js has to be put)
++--user_assets_folder
+    |-- user_fonts_folder
+    |-- user_image_folder
+    |-- user_javascript_folder
+    +-- user_css_folder
+        +-- user_sass_folder
+            +-- user_sasscache_folder
 </code></pre>
 
-<h2>
+<p>For more info, please refeer to the <code>sampleRoot</code> folder.</p>
+
+<hr><h2>
 <a name="development-environment-specifics" class="anchor" href="#development-environment-specifics"><span class="octicon octicon-link"></span></a>Development Environment Specifics</h2>
 
 <ul>
@@ -76,20 +98,21 @@
 <ul>
 <li>sprites without hash on name  - name always the same (<code>icon-sprites.png</code> for e.g.);</li>
 <li>Hash used as cachebuster instead (<code>icon-sprites.png?v=9999999</code> for e.g.)</li>
-</ul><h2>
+</ul><hr><h2>
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <h4>
 <a name="step-0" class="anchor" href="#step-0"><span class="octicon octicon-link"></span></a>Step 0</h4>
 
-<p>Put <code>config.rb</code> on your project's root folder.</p>
+<p>Put <code>config.rb</code>, <code>Gruntfile.js</code> and <code>package.json</code> on your project's root folder.</p>
 
 <h4>
 <a name="step-1" class="anchor" href="#step-1"><span class="octicon octicon-link"></span></a>Step 1</h4>
 
 <p>Configure your folder's names. E.g.:</p>
 
-<pre><code>user_css_folder = 'css'
+<pre><code>user_assets_folder = 'assets'
+user_css_folder = 'css'
 user_fonts_folder = 'fonts'
 user_sass_folder = 'sass'
 user_sasscache_folder = '_cache' //sass default is '.sass-cache'
@@ -100,38 +123,37 @@ user_javascript_folder = 'js'
 <h4>
 <a name="step-2" class="anchor" href="#step-2"><span class="octicon octicon-link"></span></a>Step 2</h4>
 
-<p>Configure your environment's type. E.g.:</p>
+<p>Run your grunt's environment type, considering you are using my tasks. E.g.:</p>
 
-<pre><code>user_environment = 'dev' ##or 'prod'. Defaults to prod if wrote wrong
+<p>For a watch (just like <code>compass watch</code>):</p>
+
+<pre><code>grunt dev
+</code></pre>
+
+<p>For run-once compile:</p>
+
+<pre><code>grunt compass:prod
 </code></pre>
 
 <h4>
 <a name="step-3" class="anchor" href="#step-3"><span class="octicon octicon-link"></span></a>Step 3</h4>
-
-<p>Run <code>compass watch</code> from your Ruby prompt <em>or any other tool that do the same (<a href="http://alphapixels.com/prepros/">Prepros</a> with Full Compass Support on, for e.g.)</em></p>
-
-<h4>
-<a name="step-4" class="anchor" href="#step-4"><span class="octicon octicon-link"></span></a>Step 4</h4>
 
 <p>Profit (?!)</p>
 
 <h2>
 <a name="knows-issues" class="anchor" href="#knows-issues"><span class="octicon octicon-link"></span></a>Knows Issues</h2>
 
-<p>Compass Sprites using something like <code>@import "{folderName}/*.png"; @include all-{folderName}-sprites;</code> give <code>#public_url</code> error and sourcemaps will fail to be created/updated.</p>
+<p>Compass Sprites using something like <code>@import "{folderName}/*.png"; @include all-{folderName}-sprites;</code> give <code>#public_url</code> error and sourcemaps will fail to be created/updated. Set <code>user_sourcemaps</code> to <code>false</code> on <code>package.json</code> to prevent that.</p>
 
-<h2>
-<a name="etc" class="anchor" href="#etc"><span class="octicon octicon-link"></span></a>Etc</h2>
-
-<p>Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request.</p>
-
-<p>Thanks to:</p>
+<hr><h4>
+<a name="thanks-to" class="anchor" href="#thanks-to"><span class="octicon octicon-link"></span></a>Thanks to:</h4>
 
 <ul>
-<li>People who made Sass and Compass (<a href="http://nex-3.com/">nex3</a> and <a href="http://chriseppstein.github.com/">Chris</a> &lt;3)</li>
+<li>You who read, use and/or help make it better by pushing things or creating issues</li>
+<li>People who made Sass and Compass - <a href="http://nex-3.com/">nex3</a> and <a href="http://chriseppstein.github.com/">Chris</a> - and who contributed to it</li>
+<li>People who made <a href="http://gruntjs.com">Gruntjs</a> and who contributed to it</li>
 <li>
-<a href="http://www.codechewing.com/library/automatically-generate-css-sprites-with-sass/">Peter J Langley</a> for his sprite hash remover script used as base (as well as the tutorial itself. Go read the link, it's good :D)</li>
-<li>You who read, use and/or help make it better</li>
+<a href="http://www.codechewing.com/library/automatically-generate-css-sprites-with-sass/">Peter J Langley</a> for his sprite hash remover script used as base (as well as the tutorial itself. Go read it, it's good :D)</li>
 </ul>
       </section>
     </div>
