@@ -1,7 +1,7 @@
 //* ========================
 //compass-generic-config
-//Version: 0.4
-//Author: RaphaelDDL
+//Version: 0.5.1
+//Author: Raphael DDL Oliveira
 //Github: https://github.com/RaphaelDDL/compass-generic-config
 //MIT LICENSE
 //https://github.com/RaphaelDDL/compass-generic-config/blob/master/LICENSE

@@ -72,7 +72,7 @@ Put `config.rb`, `Gruntfile.js` and `package.json` on your project's root folder
 
 
 #### Step 1
-Configure your folder's names. E.g.:
+Configure your folder's names on `package.json`. E.g.:
 
 	user_assets_folder = 'assets'
 	user_css_folder = 'css'
@@ -84,7 +84,10 @@ Configure your folder's names. E.g.:
 
 
 #### Step 2
-Run your grunt's environment type, considering you are using my tasks. E.g.:
+On your cmd/terminal at your project's root, run `npm install` to download all dependencies specified on `package.json`, such as grunt and other plugins.
+
+#### Step 3
+On your cmd/terminal at your project's root, run your grunt's environment type, considering you are using my tasks. E.g.:
 
 For a watch (just like `compass watch`):
 
@@ -94,8 +97,11 @@ For run-once compile:
 
 	grunt compass:prod
 
+Or if not using grunt:
 
-#### Step 3
+	compass watch
+
+#### Step 4
 
 Profit (?!)
 

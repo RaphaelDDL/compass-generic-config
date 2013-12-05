@@ -1,7 +1,7 @@
 #================================================#
 #compass-generic-config
-#Version: 0.4
-#Author: RaphaelDDL
+#Version: 0.5.1
+#Author: Raphael DDL Oliveira
 #Github: https://github.com/RaphaelDDL/compass-generic-config
 #MIT LICENSE
 #https://github.com/RaphaelDDL/compass-generic-config/blob/master/LICENSE
@@ -72,9 +72,9 @@ sprite_load_path = images_path
 #================================================#
 #Section: Environment Rules                      #
 #================================================#
-if (defined?(environment)) && environment != nil
+if environment == nil || (environment != :development && environment != :production)
+	puts "CONFIG.RB WARNING: environment property not set, using :production as default.\n"
 	environment = :production
-	puts "WARNING: environment property not set, using :production as default.\n"
 end
 
 if environment == :development

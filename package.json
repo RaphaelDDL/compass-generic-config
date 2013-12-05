@@ -3,7 +3,7 @@
 	"version": "0.5.1",
 	"description": "A configurable config.rb, integrated with Gruntjs",
 	"main": "Gruntfile.js",
-	"author": "RaphaelDDL",
+	"author": "Raphael DDL Oliveira",
 	"url": "https://github.com/RaphaelDDL/compass-generic-config",
 	"folderConfig": {
 		"user_http_path": "/",
