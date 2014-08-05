@@ -9,6 +9,7 @@ Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request, it'
 ------
 
 #### Changelog
+* 0.5.2 - fixed some minor stuff on config.rb, bumped some dependencies, tested with latest (at the moment of this writing) `Sass 3.4.0.rc.3 (Selective Steve)` && `Compass 1.0.0.rc.1 (Polaris)`
 * 0.5.1 - Implemented user_assets_folder, changed user_fonts_folder to assets' root, like most applications normally do, revamped Readme to reflect the changes
 * 0.4 - Revamped config, now integrated with Grunt.js
 * 0.3 - Added `user_sourcemaps`
