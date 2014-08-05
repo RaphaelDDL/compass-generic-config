@@ -1,6 +1,6 @@
 {
 	"name": "compass-generic-config",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"description": "A configurable config.rb, integrated with Gruntjs",
 	"main": "Gruntfile.js",
 	"author": "Raphael DDL Oliveira",
@@ -17,8 +17,8 @@
 		"user_sourcemaps":"true"
 	},
 	"devDependencies": {
-		"grunt": "~0.4.1",
-		"grunt-contrib-compass": "~0.6.0",
-		"grunt-contrib-watch": "~0.5.3"
+		"grunt": "^0.4.5",
+		"grunt-contrib-compass": "^0.9.1",
+		"grunt-contrib-watch": "^0.6.1"
 	}
 }
