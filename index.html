@@ -2,9 +2,9 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Compass-generic-config : Easy editable config.rb file for compass, with config for both dev and prod environments and sourcemaps" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Compass-generic-config : Easy editable config.rb file for compass, with config for both dev and prod environments and sourcemaps">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -44,6 +44,8 @@ Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request, it'
 <a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h4>
 
 <ul>
+<li>0.5.2 - fixed some minor stuff on config.rb, bumped some dependencies, tested with latest (at the moment of this writing) <code>Sass 3.4.0.rc.3 (Selective Steve)</code> &amp;&amp; <code>Compass 1.0.0.rc.1 (Polaris)</code>
+</li>
 <li>0.5.1 - Implemented user_assets_folder, changed user_fonts_folder to assets' root, like most applications normally do, revamped Readme to reflect the changes</li>
 <li>0.4 - Revamped config, now integrated with Grunt.js</li>
 <li>0.3 - Added <code>user_sourcemaps</code>
@@ -109,7 +111,7 @@ Got suggestions, Bugs, whatever? Feel free to make an Issue or Pull Request, it'
 <h4>
 <a name="step-1" class="anchor" href="#step-1"><span class="octicon octicon-link"></span></a>Step 1</h4>
 
-<p>Configure your folder's names. E.g.:</p>
+<p>Configure your folder's names on <code>package.json</code>. E.g.:</p>
 
 <pre><code>user_assets_folder = 'assets'
 user_css_folder = 'css'
@@ -123,7 +125,12 @@ user_javascript_folder = 'js'
 <h4>
 <a name="step-2" class="anchor" href="#step-2"><span class="octicon octicon-link"></span></a>Step 2</h4>
 
-<p>Run your grunt's environment type, considering you are using my tasks. E.g.:</p>
+<p>On your cmd/terminal at your project's root, run <code>npm install</code> to download all dependencies specified on <code>package.json</code>, such as grunt and other plugins.</p>
+
+<h4>
+<a name="step-3" class="anchor" href="#step-3"><span class="octicon octicon-link"></span></a>Step 3</h4>
+
+<p>On your cmd/terminal at your project's root, run your grunt's environment type, considering you are using my tasks. E.g.:</p>
 
 <p>For a watch (just like <code>compass watch</code>):</p>
 
@@ -135,8 +142,13 @@ user_javascript_folder = 'js'
 <pre><code>grunt compass:prod
 </code></pre>
 
+<p>Or if not using grunt:</p>
+
+<pre><code>compass watch
+</code></pre>
+
 <h4>
-<a name="step-3" class="anchor" href="#step-3"><span class="octicon octicon-link"></span></a>Step 3</h4>
+<a name="step-4" class="anchor" href="#step-4"><span class="octicon octicon-link"></span></a>Step 4</h4>
 
 <p>Profit (?!)</p>
 
