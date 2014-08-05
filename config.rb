@@ -1,6 +1,6 @@
 #================================================#
 #compass-generic-config
-#Version: 0.5.1
+#Version: 0.5.2
 #Author: Raphael DDL Oliveira
 #Github: https://github.com/RaphaelDDL/compass-generic-config
 #MIT LICENSE
@@ -72,12 +72,16 @@ sprite_load_path = images_path
 #================================================#
 #Section: Environment Rules                      #
 #================================================#
-if environment == nil || (environment != :development && environment != :production)
-	puts "CONFIG.RB WARNING: environment property not set, using :production as default.\n"
-	environment = :production
+if environment == nil or ( environment != :development and environment != :production)
+	puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+	puts "CONFIG.RB WARNING: environment not set, using :production as default.\n"
+	puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 end
 
 if environment == :development
+	puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+	puts "Compass Compiling in Development Environment\n"
+	puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 	output_style = :expanded
 	line_comments = true
 	if folderConfig['user_sourcemaps'] == "true" || folderConfig['user_sourcemaps'] == true
@@ -89,6 +93,9 @@ if environment == :development
 	end
 
 else
+	puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+	puts "Compass Compiling in Production Environment\n"
+	puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 	output_style = :compressed
 	line_comments = false
 	sass_options = { :cache_location => cache_dir }
